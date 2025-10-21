@@ -7,9 +7,15 @@ import ProcessTable from "./components/ProcessTable";
 import SelectAlgorithm from "./components/SelectAlgorithm";
 import { Play } from "lucide-react";
 import ResultDisplay from "./components/ResultDisplay";
-// import { useToast } from "./components/ui/use-toast";
-import { toast } from "./hooks/useToast";
-import { calculateFCFS, calculatePriority, calculateRoundRobin, calculateSJF, calculateSRTF } from "./components/utlis/schedulingAlgorithms";
+
+import {
+  calculateFCFS,
+  calculatePriority,
+  calculateRoundRobin,
+  calculateSJF,
+  calculateSRTF,
+} from "./components/utlis/schedulingAlgorithms";
+import toast from "react-hot-toast";
 
 const App = () => {
   const [processes, setProcesses] = useState([]);
@@ -22,21 +28,14 @@ const App = () => {
   // Adding process
   const handleAddProcess = (process) => {
     setProcesses([...processes, process]);
-    toast({
-      title: "Process Added",
-      description: `${process.name} has been added to the queue.`,
-    });
+    toast.success("Process Added Successfully");
   };
 
   // Removing process
   const handleRemoveProcess = (id) => {
     const process = processes.find((p) => p.id === id);
     setProcesses(processes.filter((p) => p.id !== id));
-    toast({
-      title: "Process Removed",
-      description: `${process?.name} has been removed from the queue.`,
-      variant: "destructive",
-    });
+    toast.success(`${process.name} Removed Successfully`);
   };
 
   // Selecting Algorithms
@@ -51,21 +50,13 @@ const App = () => {
   const handleRunSimulation = () => {
     // if there is no process selected
     if (processes.length === 0) {
-      toast({
-        title: "No Processes",
-        description: "Please add at least one process to run the simulation.",
-        variant: "destructive",
-      });
+      toast.error("Please add at least one process to run the simulation.");
       return;
     }
 
     // if there is no selected algorithm
     if (selectedAlgorithms.length === 0) {
-      toast({
-        title: "No Algorithms Selected",
-        description: "Please select at least one scheduling algorithm.",
-        variant: "destructive",
-      });
+      toast.error("Please select at least one scheduling algorithm.");
       return;
     }
 
@@ -92,25 +83,23 @@ const App = () => {
     });
 
     setResults(newResults);
-    
-    toast({
-      title: "Simulation Complete",
-      description: `Successfully simulated ${
-        selectedAlgorithms.length
-      } algorithm${selectedAlgorithms.length > 1 ? "s" : ""}.`,
-    });
+
+    toast.success(
+      `Successfully simulated ${selectedAlgorithms.length} algorithm${
+        selectedAlgorithms.length > 1 ? "s" : ""
+      }.`
+    );
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-[var(--gradient-hero)">
+    <div className="min-h-screen bg-gray-100">
       <img
         src={assets.bgImg}
         alt="bgImg"
-        className="absolute -z-5 h-[90vh] -translate-x-20 -translate-y-30 object-cover"
+        className="absolute z-1 h-[90vh] w-full -translate-y-30 object-cover"
       />
-      <div className="max-w-7xl mx-auto space-y-8">
+      <div className="max-w-7xl mx-auto space-y-8 py-8 px-4 sm:px-6 lg:px-8">
         <Header />
-
         {/* Process Form */}
         <ProcessForm onAddProcess={handleAddProcess} />
         <ProcessTable
@@ -137,6 +126,12 @@ const App = () => {
 
         <ResultDisplay results={results} />
       </div>
+      <footer className=" mt-8 p-4 bg-[linear-gradient(135deg,hsl(250_75%_60%),hsl(260_70%_65%))]">
+        <p className="text-center text-md text-white ">Made with ❤️ by Riyan</p>
+        <p className="text-center text-sm text-gray-100 mt-1 ">
+          &copy; 2024 OS Algorithm Simulator. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 };

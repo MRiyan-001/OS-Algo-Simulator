@@ -20,7 +20,7 @@ const GanttChart = ({ executions }) => {
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2 overflow-x-auto pb-2">
+      <div className="flex items-center gap-1 overflow-x-auto pb-2 scrollbar-hide">
         {executions.map((execution, index) => {
           const width =
             ((execution.endTime - execution.startTime) / maxTime) * 100;
@@ -38,7 +38,7 @@ const GanttChart = ({ executions }) => {
           );
         })}
       </div>
-      <div className="flex items-center gap-2 overflow-x-auto text-xs font-mono text-muted-foreground">
+      <div className="flex items-center gap-2 overflow-x-auto text-xs font-mono text-muted-foreground scrollbar-hide">
         {executions.map((execution, index) => {
           const width =
             ((execution.endTime - execution.startTime) / maxTime) * 100;

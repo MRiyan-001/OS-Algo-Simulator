@@ -3,13 +3,13 @@ import GanttChart from "./GanttChart";
 
 const ResultDisplay = ({ results }) => {
   return results.length === 0 ? (
-    <div className="p-8 shadow-md border-border/50">
-      <p className="text-center text-muted-foreground">
+    <div className="p-6 shadow-md border-border/50">
+      <p className="text-center text-gray-500">
         Select algorithms and click "Run Simulation" to see results.
       </p>
     </div>
   ) : (
-    <div className="space-y-6">
+    <div className="sm:grid sm:grid-cols-2 space-y-6">
       {results.map((result, index) => (
         <div
           key={index}
@@ -30,18 +30,16 @@ const ResultDisplay = ({ results }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-              <p className="text-sm text-muted-foreground mb-1">
-                Average Waiting Time
-              </p>
-              <p className="text-2xl font-bold font-mono text-primary">
+              <p className="text-sm text-gray-600 mb-1">Average Waiting Time</p>
+              <p className="text-2xl font-bold font-mono bg-[linear-gradient(135deg,hsl(250_75%_60%),hsl(260_70%_65%))] text-transparent bg-clip-text">
                 {result.averageWaitingTime.toFixed(2)}
               </p>
             </div>
             <div className="p-4 rounded-lg bg-accent/5 border border-accent/20">
-              <p className="text-sm text-muted-foreground mb-1">
+              <p className="text-sm text-gray-600 mb-1">
                 Average Turnaround Time
               </p>
-              <p className="text-2xl font-bold font-mono text-accent">
+              <p className="text-2xl font-bold font-mono bg-[linear-gradient(135deg,hsl(250_75%_60%),hsl(260_70%_65%))] text-transparent bg-clip-text">
                 {result.averageTurnaroundTime.toFixed(2)}
               </p>
             </div>
