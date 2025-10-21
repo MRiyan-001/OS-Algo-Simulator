@@ -30,7 +30,7 @@ const ProcessForm = ({ onAddProcess }) => {
   };
 
   return (
-    <div className="p-6 shadow-[0_2px_8px_0px_rgba(99,99,99,0.2)] border-border/50 rounded-lg">
+    <div className="p-6  shadow-[0_2px_8px_0px_rgba(99,99,99,0.2)] border-border/50 rounded-lg">
       <h2 className="text-xl font-bold mb-4 bg-[linear-gradient(135deg,hsl(250_75%_60%),hsl(260_70%_65%))] bg-clip-text text-transparent">
         Add Process
       </h2>

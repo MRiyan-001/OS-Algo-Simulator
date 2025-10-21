@@ -92,14 +92,15 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen relative bg-gray-50">
       <img
         src={assets.bgImg}
         alt="bgImg"
-        className="absolute z-1 h-[90vh] w-full -translate-y-30 object-cover"
+        className="absolute -z-10 h-[90vh] w-full -translate-y-20 object-cover"
       />
       <div className="max-w-7xl mx-auto space-y-8 py-8 px-4 sm:px-6 lg:px-8">
         <Header />
+
         {/* Process Form */}
         <ProcessForm onAddProcess={handleAddProcess} />
         <ProcessTable
